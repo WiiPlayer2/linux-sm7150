@@ -609,18 +609,18 @@
 	};
 };
 
-// &sdhc_2 {
-// 	cd-gpios = <&tlmm 69 GPIO_ACTIVE_HIGH>;
+&sdhc_2 {
+	cd-gpios = <&tlmm 69 GPIO_ACTIVE_HIGH>;
 
-// 	vmmc-supply = <&vreg_l9c_3p1>;
-// 	vqmmc-supply = <&vreg_l6c_3p0>;
+	vmmc-supply = <&vreg_l9c_3p1>;
+	vqmmc-supply = <&vreg_l6c_3p0>;
 
-// 	pinctrl-names = "default", "sleep";
-// 	pinctrl-0 = <&sdc2_on>;
-// 	pinctrl-1 = <&sdc2_off>;
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&sdc2_on>;
+	pinctrl-1 = <&sdc2_off>;
 
-// 	status = "okay";
-// };
+	status = "okay";
+};
 
 &tlmm {
 	gpio-reserved-ranges = 	<0 4>,
@@ -682,36 +682,36 @@
 	};
 };
 
-// &ufs_mem_hc {
-// 	vcc-supply = <&vreg_l19a_2p85>;
-// 	vcc-max-microamp = <600000>;
-// 	vccq2-supply = <&vreg_l12a_1p8>;
-// 	vccq2-max-microamp = <600000>;
-// 	status = "okay";
-// };
+&ufs_mem_hc {
+	vcc-supply = <&vreg_l19a_2p85>;
+	vcc-max-microamp = <600000>;
+	vccq2-supply = <&vreg_l12a_1p8>;
+	vccq2-max-microamp = <600000>;
+	status = "okay";
+};
 
-// &ufs_mem_phy {
-// 	vdda-phy-supply = <&vreg_l4a_0p88>;
-// 	vdda-pll-supply = <&vreg_l3c_1p23>;
-// 	vdda-phy-max-microamp = <62900>;
-// 	vdda-pll-max-microamp = <18300>;
-// 	status = "okay";
-// };
+&ufs_mem_phy {
+	vdda-phy-supply = <&vreg_l4a_0p88>;
+	vdda-pll-supply = <&vreg_l3c_1p23>;
+	vdda-phy-max-microamp = <62900>;
+	vdda-pll-max-microamp = <18300>;
+	status = "okay";
+};
 
-// &usb_1 {
-// 	qcom,select-utmi-as-pipe-clk;
-// 	status = "okay";
-// };
+&usb_1 {
+	qcom,select-utmi-as-pipe-clk;
+	status = "okay";
+};
 
-// &usb_1_dwc3 {
-// 	maximum-speed = "high-speed";
-// 	dr_mode = "peripheral";
-// 	status = "okay";
-// };
+&usb_1_dwc3 {
+	maximum-speed = "high-speed";
+	dr_mode = "peripheral";
+	status = "okay";
+};
 
-// &usb_1_hsphy {
-// 	vdd-supply = <&vreg_l4a_0p88>;
-// 	vdda-pll-supply = <&vreg_l11a_1p8>;
-// 	vdda-phy-dpdm-supply = <&vreg_l17a_3p1>;
-// 	status = "okay";
-// };
+&usb_1_hsphy {
+	vdd-supply = <&vreg_l4a_0p88>;
+	vdda-pll-supply = <&vreg_l11a_1p8>;
+	vdda-phy-dpdm-supply = <&vreg_l17a_3p1>;
+	status = "okay";
+};
