@@ -622,8 +622,19 @@
 // 	status = "okay";
 // };
 
+&lpass_tlmm {
+	// reg = <0 0x62b40000 0 0xe000>;
+};
+
 &tlmm {
-	gpio-reserved-ranges = <59 4>;
+	// gpio-reserved-ranges = <59 4>;
+
+	// reg = 	<0 0x03400000 0 0x300000>,
+	// 	<0 0x03800000 0 0x300000>,
+	// 	<0 0x03c00000 0 0x300000>;
+	gpio-reserved-ranges = 	<0 4>,
+				<59 4>,
+				<83 2>;
 
 	// Finger Print Sensor ET713
 	// BTP_RST_N - gpio58
