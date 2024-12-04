@@ -47,9 +47,9 @@
 // };
 
 /* Limit CPU clock to 2.2 GHz */
-//  &cpu6_opp14 {
-// 	status = "disabled";
-// };
+ &cpu6_opp14 {
+	status = "disabled";
+};
 
 / {
 	model = "Samsung A71";
