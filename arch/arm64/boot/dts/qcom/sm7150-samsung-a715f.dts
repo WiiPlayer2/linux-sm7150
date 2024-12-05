@@ -226,19 +226,6 @@
 		};
 
 		/* XBL and AOP are splitted */
-		/* TODO:
-		xbl_aop_mem@85d00000 {
-			compatible = "removed-dma-pool";
-			no-map;
-			reg = <0x00 0x85d00000 0x00 0x2ff000>;
-			phandle = <0x4c3>;
-		};
-		*/
-		xbl_aop_mem@85d00000 {
-			no-map;
-			reg = <0x00 0x85d00000 0x00 0x2ff000>;
-		};
-
 		xbl_mem: xbl@85d00000 {
 			reg = <0x0 0x85d00000 0x0 0x200000>;
 			no-map;
