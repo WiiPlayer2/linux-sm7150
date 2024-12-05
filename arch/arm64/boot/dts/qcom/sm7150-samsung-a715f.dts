@@ -16,13 +16,6 @@
 #include "pm6150.dtsi"
 #include "pm6150l.dtsi"
 
-/delete-node/ &hyp_mem;
-/delete-node/ &xbl_mem;
-/delete-node/ &aop_mem;
-/delete-node/ &aop_cmd_db_mem;
-/delete-node/ &sec_apps_mem;
-/delete-node/ &smem_mem;
-/delete-node/ &tz_mem;
 /delete-node/ &camera_mem;
 /delete-node/ &mpss_mem;
 /delete-node/ &venus_mem;
@@ -33,18 +26,16 @@
 /delete-node/ &ipa_fw_mem;
 /delete-node/ &ipa_gsi_mem;
 /delete-node/ &gpu_mem;
-/delete-node/ &qseecom_mem;
 /delete-node/ &sec_cdsp_mem;
-/delete-node/ &dfps_data_mem;
 
 /* Increase the size */
-// &tz_mem {
-// 	reg = <0x0 0x86200000 0x0 0x5600000>;
-// };
+&tz_mem {
+	reg = <0x0 0x86200000 0x0 0x5600000>;
+};
 
-// &qseecom_mem {
-// 	reg = <0x0 0x9e400000 0x0 0x2400000>;
-// };
+&qseecom_mem {
+	reg = <0x0 0x9e400000 0x0 0x2400000>;
+};
 
 /* Limit CPU clock to 2.2 GHz */
  &cpu6_opp14 {
@@ -82,253 +73,54 @@
 	};
 
 	reserved-memory {
-		// tz_mem: trust-zone@86200000 {
-		// 	reg = <0x0 0x86200000 0x0 0x5600000>;
-		// 	no-map;
-		// };
-
-		// // reserved1@8b800000 {
-		// // 	reg = <0x0 0x8b800000 0x0 1300000>;
-		// // 	no-map
-		// // };
-
-		// camera_mem: memory@8cb00000 {
-		// 	reg = <0x0 0x8cb00000 0x0 0x500000>;
-		// 	no-map;
-		// };
-
-		// mpss_mem: memory@8d000000 {
-		// 	reg = <0x0 0x8d000000 0x0 0x8c00000>;
-		// 	no-map;
-		// };
-
-		// venus_mem: memory@95c00000 {
-		// 	reg = <0x0 0x95c00000 0x0 0x500000>;
-		// 	no-map;
-		// };
-
-		// cdsp_mem: memory@96100000 {
-		// 	reg = <0x0 0x96100000 0x0 0x1e00000>;
-		// 	no-map;
-		// };
-
-		// adsp_mem: memory@95700000 {
-		// 	reg = <0x0 0x97f00000 0x0 0x2800000>;
-		// 	no-map;
-		// };
-
-		// wlan_msa_mem: memory@9a700000 {
-		// 	reg = <0x0 0x9a700000 0x0 0x180000>;
-		// 	no-map;
-		// };
-
-		// npu_mem: memory@97680000 {
-		// 	reg = <0x0 0x9a880000 0x0 0x80000>;
-		// 	no-map;
-		// };
-
-		// ipa_fw_mem: memory@9a900000 {
-		// 	reg = <0x0 0x9a900000 0x0 0x10000>;
-		// 	no-map;
-		// };
-
-		// ipa_gsi_mem: memory@9a910000 {
-		// 	reg = <0x0 0x9a910000 0x0 0x5000>;
-		// 	no-map;
-		// };
-
-		// gpu_mem: memory@9a915000 {
-		// 	reg = <0x0 0x9a915000 0x0 0x2000>;
-		// 	no-map;
-		// };
-
-		// // reserved2@9a917000 {
-		// // 	reg = <0x0 0x9a917000 0x0 0x3AE9000>;
-		// // 	no-map;
-		// // };
-
-		// qseecom_mem: qseecom@9e400000 {
-		// 	reg = <0x0 0x9e400000 0x0 0x2400000>;
-		// 	no-map;
-		// };
-
-		// framebuffer_region@9c000000 {
-		// 	reg = <0x0 0x9c000000 0x0 (1080 * 2400 * 4)>;
-		// 	no-map;
-		// };
-
-		// ramoops@a1300000 {
-		// 	compatible = "ramoops";
-		// 	reg = <0x0 0xa1300000 0x0 0x100000>;
-
-		// 	record-size = <0x40000>;
-		// 	pmsg-size = <0x40000>;
-		// 	console-size = <0x40000>;
-		// };
-
-		// sec_cdsp_mem: memory@a4000000 {
-		// 	reg = <0x0 0xa4000000 0x0 0xc00000>;
-		// 	no-map;
-		// };
-
-		// dfps_data_mem: dfps-data@9e300000 {
-		// 	reg = <0x0 0x9e300000 0x0 0x0100000>;
-		// 	no-map;
-		// };
-
-		// // Additional regions
-		// ss_plog@A1100000 {
-		// 	// compatible = "ss_plog";
-		// 	no-map;
-		// 	reg = <0x00 0xa1100000 0x00 0x200000>;
-		// };
-		
-		// sec_debug_region@a1400000 {
-		// 	no-map;
-		// 	reg = <0x00 0xa1400000 0x00 0x800000>;
-		// };
-
-		// sec_debug_autocomment@a1c00000 {
-		// 	no-map;
-		// 	reg = <0x00 0xa1c00000 0x00 0x1000>;
-		// };
-
-		// sec_debug_rdx_bootdev@0 {
-		// 	no-ship;
-		// 	reg = <0x01 0x00 0x00 0x5900000>;
-		// };
-
-		// kaslr_region@80001000 {
-		// 	reg = <0x00 0x80001000 0x00 0x1000>;
-		// };
-
-		// rkp_region@B0200000 {
-		// 	reg = <0x00 0xb0200000 0x00 0x200000>;
-		// };
-
-		// tima_region@B0100000 {
-		// 	no-map;
-		// 	reg = <0x00 0xb0100000 0x00 0x100000>;
-		// };
-
-		// modem_shared_mem_region@BA000000 {
-		// 	no-map;
-		// 	reg = <0x00 0xba000000 0x00 0x6000000>;
-		// };
-
-		uh_heap_region {
-			reg = <0x00 0xb0400000 0x00 0x1400000>;
-		};
-
-		hyp_mem: hypervisor@85700000 {
-			reg = <0x0 0x85700000 0x0 0x600000>;
-			no-map;
-		};
-
-		/* XBL and AOP are splitted */
-		xbl_mem: xbl@85d00000 {
-			reg = <0x0 0x85d00000 0x0 0x200000>;
-			no-map;
-		};
-
-		aop_mem: aop@85f00000 {
-			reg = <0x0 0x85f00000 0x0 0x20000>;
-			no-map;
-		};
-
-		aop_cmd_db_mem: aop-cmd-db@85f20000 {
-			compatible = "qcom,cmd-db";
-			reg = <0x0 0x85f20000 0x0 0x20000>;
-			no-map;
-		};
-
-		sec_apps_mem: sec-apps@85fff000 {
-			reg = <0x0 0x85fff000 0x0 0x1000>;
-			no-map;
-		};
-
-		smem_mem: smem@86000000 {
-			reg = <0x0 0x86000000 0x0 0x200000>;
-			no-map;
-		};
-
-		tz_mem: trust-zone@86200000 {
-			reg = <0x0 0x86200000 0x0 0x5600000>;
-			no-map;
-		};
-
-		camera_mem: camera@8ab00000 {
+		camera_mem: memory@8cb00000 {
 			reg = <0x0 0x8cb00000 0x0 0x500000>;
 			no-map;
 		};
 
-		mpss_mem: mpss@8b000000 {
+		mpss_mem: memory@8d000000 {
 			reg = <0x0 0x8d000000 0x0 0x8c00000>;
 			no-map;
 		};
 
-		venus_mem: venus@93400000 {
+		venus_mem: memory@95c00000 {
 			reg = <0x0 0x95c00000 0x0 0x500000>;
 			no-map;
 		};
 
-		cdsp_mem: cdsp@93900000 {
+		cdsp_mem: memory@96100000 {
 			reg = <0x0 0x96100000 0x0 0x1e00000>;
 			no-map;
 		};
 
-		adsp_mem: adsp@95700000 {
+		adsp_mem: memory@95700000 {
 			reg = <0x0 0x97f00000 0x0 0x2800000>;
 			no-map;
 		};
 
-		wlan_msa_mem: wlan-msa@97500000 {
+		wlan_msa_mem: memory@9a700000 {
 			reg = <0x0 0x9a700000 0x0 0x180000>;
 			no-map;
 		};
 
-		npu_mem: npu@97680000 {
+		npu_mem: memory@97680000 {
 			reg = <0x0 0x9a880000 0x0 0x80000>;
 			no-map;
 		};
 
-		ipa_fw_mem: ipa-fw@97700000 {
+		ipa_fw_mem: memory@9a900000 {
 			reg = <0x0 0x9a900000 0x0 0x10000>;
 			no-map;
 		};
 
-		ipa_gsi_mem: ipa-gsi@97710000 {
+		ipa_gsi_mem: memory@9a910000 {
 			reg = <0x0 0x9a910000 0x0 0x5000>;
 			no-map;
 		};
 
-		gpu_mem: gpu@97715000 {
+		gpu_mem: memory@9a915000 {
 			reg = <0x0 0x9a915000 0x0 0x2000>;
 			no-map;
-		};
-
-		qseecom_mem: qseecom@9e400000 {
-			reg = <0x0 0x9e400000 0x0 0x2400000>;
-			no-map;
-		};
-
-		sec_cdsp_mem: sec-cdsp@9f800000 {
-			reg = <0x0 0xa4000000 0x0 0xc00000>;
-			no-map;
-		};
-
-		dfps_data_mem: dfps-data@9e300000 {
-			reg = <0x0 0x9e300000 0x0 0x100000>;
-			no-map;
-		};
-
-		ramoops@A1300000 {
-			compatible = "ramoops";
-			reg = <0x00 0xa1300000 0x00 0x100000>;
-			record-size = <0x40000>;
-			console-size = <0x40000>;
-			ftrace-size = <0x40000>;
-			pmsg-size = <0x40000>;
 		};
 
 		framebuffer_region@9c000000 {
@@ -336,45 +128,18 @@
 			no-map;
 		};
 
-		ss_plog@A1100000 {
+		ramoops@a1300000 {
+			compatible = "ramoops";
+			reg = <0x0 0xa1300000 0x0 0x100000>;
+
+			record-size = <0x40000>;
+			pmsg-size = <0x40000>;
+			console-size = <0x40000>;
+		};
+
+		sec_cdsp_mem: memory@a4000000 {
+			reg = <0x0 0xa4000000 0x0 0xc00000>;
 			no-map;
-			reg = <0x00 0xa1100000 0x00 0x200000>;
-		};
-
-		sec_debug_region@0 {
-			no-map;
-			reg = <0x00 0xa1400000 0x00 0x800000>;
-		};
-
-		sec_debug_autocomment@0 {
-			no-map;
-			reg = <0x00 0xa1c00000 0x00 0x1000>;
-		};
-
-		sec_debug_rdx_bootdev@0 {
-			reg = <0x01 0x00 0x00 0x5900000>;
-		};
-
-		kaslr_region@80001000 {
-			reg = <0x00 0x80001000 0x00 0x1000>;
-		};
-
-		rkp_region@B0200000 {
-			reg = <0x00 0xb0200000 0x00 0x200000>;
-		};
-
-		tima_region@B0100000 {
-			no-map;
-			reg = <0x00 0xb0100000 0x00 0x100000>;
-		};
-
-		modem_shared_mem_region@BA000000 {
-			no-map;
-			reg = <0x00 0xba000000 0x00 0x6000000>;
-		};
-
-		camera_mem_region {
-			reg = <0x00 0xc2000000 0x00 0x25800000>;
 		};
 	};
 };
