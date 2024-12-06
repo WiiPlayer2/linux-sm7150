@@ -364,6 +364,27 @@
 	};
 };
 
+&cci0 {
+	status = "okay";
+};
+
+&cci1 {
+	status = "okay";
+};
+
+// Display not working with this enabled
+// &dispcc {
+// 	status = "okay";
+// };
+
+&gpi_dma0 {
+	status = "okay";
+};
+
+&gpi_dma1 {
+	status = "okay";
+};
+
 &sdhc_2 {
 	cd-gpios = <&tlmm 69 GPIO_ACTIVE_HIGH>;
 
