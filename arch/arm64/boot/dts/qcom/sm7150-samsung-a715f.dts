@@ -241,7 +241,7 @@
 		vreg_l16a_2p8: ldo16 {
 			// TODO check correct voltage. was 3.3V before but with this USB gadget works
 			regulator-min-microvolt = <3232000>;
-			regulator-max-microvolt = <3232000>;
+			regulator-max-microvolt = <3300000>;
 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
 
@@ -352,7 +352,7 @@
 		vreg_l11c_3p3: ldo11 {
 			// TODO check voltage. Was 3.3V before, see regulators-0/ldo16. UFS apparently works now
 			regulator-min-microvolt = <3232000>;
-			regulator-max-microvolt = <3232000>;
+			regulator-max-microvolt = <3300000>;
 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
 
