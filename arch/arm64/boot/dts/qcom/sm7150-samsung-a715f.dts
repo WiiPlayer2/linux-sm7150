@@ -72,6 +72,19 @@
 		};
 	};
 
+	gpio_keys: gpio-keys {
+		compatible = "gpio-keys";
+		pinctrl-names = "default";
+		pinctrl-0 = <&vol_up_n>;
+
+		key-volume-up {
+			label = "Volume Up";
+			linux,code = <KEY_VOLUMEUP>;
+			gpios = <&pm6150l_gpios 2 GPIO_ACTIVE_LOW>;
+			debounce-interval = <15>;
+		};
+	};
+
 	reserved-memory {
 		camera_mem: memory@8cb00000 {
 			reg = <0x0 0x8cb00000 0x0 0x500000>;
@@ -141,6 +154,13 @@
 			reg = <0x0 0xa4000000 0x0 0xc00000>;
 			no-map;
 		};
+	};
+
+	vph_pwr: vph-pwr-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "vph_pwr";
+		regulator-min-microvolt = <3700000>;
+		regulator-max-microvolt = <3700000>;
 	};
 };
 
@@ -268,6 +288,36 @@
 		compatible = "qcom,pm6150l-rpmh-regulators";
 		qcom,pmic-id = "c";
 
+		vdd-s1-supply = <&vph_pwr>;
+		vdd-s2-supply = <&vph_pwr>;
+		vdd-s3-supply = <&vph_pwr>;
+		vdd-s4-supply = <&vph_pwr>;
+		vdd-s5-supply = <&vph_pwr>;
+		vdd-s6-supply = <&vph_pwr>;
+		vdd-s7-supply = <&vph_pwr>;
+		vdd-s8-supply = <&vph_pwr>;
+
+		/*
+		 * There should be:
+		 * vdd-l1-l8-supply = <&vreg_s5a_2p0>;
+		 * But pm7150l doesn't have access to S5A.
+		 */
+		vdd-l2-l3-supply = <&vreg_s8c_1p35>;
+		vdd-l4-l5-l6-supply = <&vreg_bob>;
+		vdd-l7-l11-supply = <&vreg_bob>;
+		vdd-l9-l10-supply = <&vreg_bob>;
+
+		vdd-bob-supply = <&vph_pwr>;
+		vdd-flash-supply = <&vreg_bob>;
+		vdd-rgb-supply = <&vreg_bob>;
+
+		/*
+		 * S4, S5 are unused.
+		 * S2, S3, S7 are ARCs:
+		 * S2-S3 - cx.lvl,
+		 * S7 - mss.lvl.
+		 */
+
 		vreg_s1c_1p13: smps1 {
 			regulator-min-microvolt = <1000000>;
 			regulator-max-microvolt = <1200000>;
@@ -384,6 +434,25 @@
 
 &gpi_dma1 {
 	status = "okay";
+};
+
+&pm6150l_gpios {
+	vol_up_n: vol-up-n-state {
+		pins = "gpio2";
+		function = PMIC_GPIO_FUNC_NORMAL;
+		input-enable;
+		bias-pull-up;
+		power-source = <0>;
+	};
+
+	// panel_reset_pin: panel-reset-state {
+	// 	pins = "gpio9";
+	// 	function = PMIC_GPIO_FUNC_FUNC1;
+	// 	qcom,drive-strength = <PMIC_GPIO_STRENGTH_MED>;
+	// 	bias-disable;
+	// 	output-low;
+	// 	power-source = <1>;
+	// };
 };
 
 &pm6150_resin {
