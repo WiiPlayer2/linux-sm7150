@@ -502,13 +502,11 @@
 		vddrf-supply = <&vdd_wcss_adc_dac>;
 		vddch0-supply = <&vreg_l10c_3p3>;
 		max-speed = <3200000>;
-
-		
-			// qca,bt-vdd-io-supply = <0x31>; -> ldoa10
-			// qca,bt-vdd-xtal-supply = <0x34>; -> ldoc1
-			// qca,bt-vdd-core-supply = <0x32>; -> ldoc2
-			// qca,bt-vdd-pa-supply = <0x33>; -> ldoc10
 	};
+};
+
+&uart8 {
+	status = "okay";
 };
 
 &ufs_mem_hc {
