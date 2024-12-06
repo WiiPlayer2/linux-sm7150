@@ -386,6 +386,34 @@
 	status = "okay";
 };
 
+&qup_uart3_cts {
+	bias-pull-down;
+};
+
+&qup_uart3_rts {
+	drive-strength = <2>;
+	bias-disable;
+};
+
+&qup_uart3_tx {
+	drive-strength = <2>;
+	bias-disable;
+};
+
+&qup_uart3_rx {
+	bias-pull-up;
+};
+
+&qup_uart8_tx {
+	drive-strength = <2>;
+	bias-disable;
+};
+
+&qup_uart8_rx {
+	drive-strength = <2>;
+	bias-pull-up;
+};
+
 &qupv3_id_0 {
 	status = "okay";
 };
