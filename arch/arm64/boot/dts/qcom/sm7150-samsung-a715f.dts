@@ -445,6 +445,12 @@
 	status = "okay";
 };
 
+&ipa {
+	memory-region = <&ipa_fw_mem>;
+	firmware-name = "qcom/sm7150/a715f/ipa_fws.mbn";
+	status = "okay";
+};
+
 &pm6150l_gpios {
 	vol_up_n: vol-up-n-state {
 		pins = "gpio2";
