@@ -462,6 +462,10 @@
 	};
 };
 
+&qupv3_id_0 {
+	status = "okay";
+};
+
 &sdhc_2 {
 	cd-gpios = <&tlmm 69 GPIO_ACTIVE_HIGH>;
 
@@ -531,6 +535,15 @@
 			drive-strength = <2>;
 		};
 	};
+};
+
+&uart3 {
+	/delete-property/interrupts;
+	interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
+			      <&tlmm 41 IRQ_TYPE_EDGE_FALLING>;
+	pinctrl-names = "default", "sleep";
+	pinctrl-1 = <&qup_uart3_default>;
+	status = "okay";
 };
 
 &ufs_mem_hc {
