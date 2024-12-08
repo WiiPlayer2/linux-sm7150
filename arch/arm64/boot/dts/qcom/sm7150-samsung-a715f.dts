@@ -72,6 +72,19 @@
 		};
 	};
 
+	gpio_keys: gpio-keys {
+		compatible = "gpio-keys";
+		pinctrl-names = "default";
+		pinctrl-0 = <&vol_up_n>;
+
+		key-volume-up {
+			label = "Volume Up";
+			linux,code = <KEY_VOLUMEUP>;
+			gpios = <&pm6150l_gpios 2 GPIO_ACTIVE_LOW>;
+			debounce-interval = <15>;
+		};
+	};
+
 	reserved-memory {
 		camera_mem: memory@8cb00000 {
 			reg = <0x0 0x8cb00000 0x0 0x500000>;
@@ -358,6 +371,16 @@
 			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
 			regulator-allow-bypass;
 		};
+	};
+};
+
+&pm6150l_gpios {
+	vol_up_n: vol-up-n-state {
+		pins = "gpio2";
+		function = PMIC_GPIO_FUNC_NORMAL;
+		input-enable;
+		bias-pull-up;
+		power-source = <0>;
 	};
 };
 
