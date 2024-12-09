@@ -57,6 +57,11 @@
 			<34 6>, /* Rev0.6 */
 			<34 7>; /* Rev0.7 */
 
+	aliases {
+		bluetooth0 = &bluetooth;
+		hsuart0 = &uart3;
+	};
+
 	chosen {
 		#address-cells = <2>;
 		#size-cells = <2>;
@@ -374,6 +379,16 @@
 	};
 };
 
+// &i2c0 {
+// 	clock-frequency = <0x186a0>; // TODO: to decimal
+// 	status = "okay";
+// };
+
+// &i2c2 {
+// 	clock-frequency = <0xf4240>; // TODO: to decimal
+// 	status = "okay";
+// };
+
 &pm6150l_gpios {
 	vol_up_n: vol-up-n-state {
 		pins = "gpio2";
@@ -382,6 +397,16 @@
 		bias-pull-up;
 		power-source = <0>;
 	};
+};
+
+&qup_spi1_spi {
+	drive-strength = <6>;
+	bias-disable;
+};
+
+&qup_spi1_cs_gpio {
+	drive-strength = <6>;
+	bias-disable;
 };
 
 &qupv3_id_0 {
@@ -398,6 +423,14 @@
 	pinctrl-0 = <&sdc2_on>;
 	pinctrl-1 = <&sdc2_off>;
 
+	status = "okay";
+};
+
+// gpio0 is requested for this but it's a reserved pin
+&spi1 {
+	clock-frequency = <19200000>;
+	// pinctrl-1 = <&qup_spi1_spi_sleep>, <&qup_spi1_cs_sleep>;
+	// pinctrl-names = "default", "sleep";
 	status = "okay";
 };
 
@@ -457,6 +490,22 @@
 			drive-strength = <2>;
 		};
 	};
+
+	// qup_spi1_spi_sleep: qup-spi1-spi-state {
+	// 	pins = "gpio0", "gpio1", "gpio2";
+	// 	function = "gpio";
+	// 	bias-pull-down;
+	// 	output-low;
+	// 	drive-strength = <6>;
+	// };
+
+	// qup_spi1_cs_sleep: qup-spi1-cs-state {
+	// 	pins = "gpio3";
+	// 	function = "gpio";
+	// 	bias-pull-down;
+	// 	output-low;
+	// 	drive-strength = <6>;
+	// };
 };
 
 &uart3 {
@@ -466,6 +515,18 @@
 	pinctrl-names = "default", "sleep";
 	pinctrl-1 = <&qup_uart3_default>;
 	status = "okay";
+
+	// NOTE: needs this after every reboot: 'sudo btmgmt --index 0 public-addr 00:11:22:33:44:55'
+	// see: https://matrix.to/#/!IeSVTOYowpUldDcgJO:matrix.org/$SrXjQ6LfPBMPk-qDWwhQDPtVsgR-8gJTnSDKPATnVNU?via=matrix.org&via=tchncs.de&via=nitro.chat
+	bluetooth: bluetooth {
+		compatible = "qcom,wcn3990-bt";
+
+		vddio-supply = <&vreg_l10a_1p8>;
+		vddxo-supply = <&vreg_l1c_1p8>;
+		vddrf-supply = <&vreg_l2c_1p3>;
+		vddch0-supply = <&vreg_l10c_3p3>;
+		max-speed = <3200000>; // TODO: copied; still need to verify
+	};
 };
 
 &ufs_mem_hc {
