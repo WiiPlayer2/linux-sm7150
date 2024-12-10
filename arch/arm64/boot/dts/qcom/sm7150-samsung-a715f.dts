@@ -457,15 +457,37 @@
 	};
 };
 
-// &i2c0 {
-// 	clock-frequency = <0x186a0>; // TODO: to decimal
-// 	status = "okay";
-// };
+&gpu {
+	zap-shader {
+		firmware-name = "qcom/sm7150/a715f/a615_zap.mbn";
+	};
+};
 
-// &i2c2 {
-// 	clock-frequency = <0xf4240>; // TODO: to decimal
-// 	status = "okay";
-// };
+&i2c0 {
+	clock-frequency = <0x186a0>; // TODO: to decimal
+	status = "okay";
+};
+
+&i2c2 {
+	clock-frequency = <0xf4240>; // TODO: to decimal
+	status = "okay";
+};
+
+&i2c7 {
+	// clock-frequency = // TODO: apparently not set frequency
+	status = "okay";
+};
+
+&i2c9 {
+	// clock-frequency = // TODO: apparently not set frequency
+	status = "okay";
+};
+
+&ipa {
+	memory-region = <&ipa_fw_mem>;
+	firmware-name = "qcom/sm7150/a715f/ipa_fws.mbn";
+	status = "okay";
+};
 
 &pm6150l_gpios {
 	vol_up_n: vol-up-n-state {
@@ -491,6 +513,25 @@
 	status = "okay";
 };
 
+&qupv3_id_1 {
+	status = "okay";
+};
+
+&remoteproc_adsp {
+	firmware-name = "qcom/sm7150/a715f/adsp.mbn";
+	status = "okay";
+};
+
+&remoteproc_cdsp {
+	firmware-name = "qcom/sm7150/a715f/cdsp.mbn";
+	status = "okay";
+};
+
+&remoteproc_mpss {
+	firmware-name = "qcom/sm7150/a715f/modem.mbn";
+	status = "okay";
+};
+
 &sdhc_2 {
 	cd-gpios = <&tlmm 69 GPIO_ACTIVE_HIGH>;
 
@@ -509,6 +550,11 @@
 	clock-frequency = <19200000>;
 	// pinctrl-1 = <&qup_spi1_spi_sleep>, <&qup_spi1_cs_sleep>;
 	// pinctrl-names = "default", "sleep";
+	status = "okay";
+};
+
+&spi6 {
+	clock-frequency = <0x2faf080>; // TODO: convert
 	status = "okay";
 };
 
@@ -639,4 +685,8 @@
 	vdda-pll-supply = <&vreg_l11a_1p8>;
 	vdda-phy-dpdm-supply = <&vreg_l17a_3p1>;
 	status = "okay";
+};
+
+&venus {
+	firmware-name = "qcom/sm7150/a715f/venus.mbn";
 };
