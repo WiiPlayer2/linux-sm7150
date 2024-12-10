@@ -724,6 +724,11 @@
 // 	status = "okay";
 // };
 
+&pm6150_resin {
+	linux,code = <KEY_VOLUMEDOWN>;
+	status = "okay";
+};
+
 &pm6150l_gpios {
 	vol_up_n: vol-up-n-state {
 		pins = "gpio2";
