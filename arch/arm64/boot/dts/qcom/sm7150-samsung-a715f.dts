@@ -785,18 +785,19 @@
 	status = "okay";
 };
 
-// gpio0 is requested for this but it's a reserved pin
-&spi1 {
-	clock-frequency = <19200000>;
-	// pinctrl-1 = <&qup_spi1_spi_sleep>, <&qup_spi1_cs_sleep>;
-	// pinctrl-names = "default", "sleep";
-	status = "okay";
-};
+// NOTE: Uses gpio0-3 which are protected/reserved
+// &spi1 {
+// 	clock-frequency = <19200000>;
+// 	// pinctrl-1 = <&qup_spi1_spi_sleep>, <&qup_spi1_cs_sleep>;
+// 	// pinctrl-names = "default", "sleep";
+// 	status = "okay";
+// };
 
-&spi6 {
-	clock-frequency = <0x2faf080>; // TODO: convert
-	status = "okay";
-};
+// NOTE: Uses gpio59-62 which are protected/reserved
+// &spi6 {
+// 	clock-frequency = <0x2faf080>; // TODO: convert
+// 	status = "okay";
+// };
 
 &tlmm {
 	gpio-reserved-ranges = <0 4>, <59 4>, <83 2>;
