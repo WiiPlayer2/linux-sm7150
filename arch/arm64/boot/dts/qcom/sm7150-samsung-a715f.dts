@@ -457,6 +457,14 @@
 	};
 };
 
+&gpi_dma0 {
+	status = "okay";
+};
+
+&gpi_dma1 {
+	status = "disabled";
+};
+
 &gpu {
 	zap-shader {
 		firmware-name = "qcom/sm7150/a715f/a615_zap.mbn";
@@ -474,12 +482,12 @@
 };
 
 &i2c7 {
-	// clock-frequency = // TODO: apparently not set frequency
+	clock-frequency = <100000>; // TODO: apparently not set frequency
 	status = "okay";
 };
 
 &i2c9 {
-	// clock-frequency = // TODO: apparently not set frequency
+	clock-frequency = <100000>; // TODO: apparently not set frequency
 	status = "okay";
 };
 
