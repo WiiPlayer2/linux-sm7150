@@ -389,6 +389,10 @@
 	};
 };
 
+&dispcc {
+	status = "okay";
+};
+
 &gpi_dma0 {
 	status = "okay";
 };
@@ -430,9 +434,9 @@
 	status = "okay";
 };
 
-// &mdss {
-// 	status = "okay";
-// };
+&mdss {
+	status = "okay";
+};
 
 /*
 
@@ -644,26 +648,56 @@
 			};
 */
 
-// &mdss_dsi0 {
-// 	vdda-supply = <&vreg_l18a_2p8>;
-// 	status = "okay";
+&mdss_dsi0 {
+	vdda-supply = <&vreg_l3c_1p23>;
+	status = "okay";
 
-// 	panel: panel@0 {
-// 		compatible = "samsung,amb667um06"; // TODO: port panel driver from downstream kernel
-// 		reg = <0>;
-// 	};
-// };
+	panel@0 {
+		compatible = "mdss,s6e3fa9-amb667um06";
+		reg = <0>;
 
-// &mdss_dsi0_out {
-// 	data-lanes = <0 1 2 3>;
-// 	remote-endpoint = <&panel_in>;
-// 	status = "okay";
-// };
+		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
 
-// &mdss_dsi0_phy {
-// 	vdds-supply = <&vdda_mipi_dsi0_pll>;
-// 	status = "okay";
-// };
+			// surya
+			// pinctrl-names = "panel_active", "panel_suspend";
+			// pinctrl-0 = <0x3c1 0x2e8>; sde_te_active, disp_pins_default
+			// pinctrl-1 = <0x3c2>; sde_te_suspend
+
+			// primary
+			// pinctrl-names = "panel_active\0panel_suspend";
+			// pinctrl-0 = <0x4e0 0x4e1 0x4e2 0x4e3 0x4e4>; sde_en_active, sde_te_active, sde_dsi_active, sde_esd_active, sde_ub_det_active
+			// pinctrl-1 = <0x4e5 0x4e6 0x4e7 0x4e8 0x4e9>; sde_en_suspend, sde_te_suspend, sde_dsi_suspend, sde_esd_suspend, sde_ub_det_suspend
+
+			// secondary
+			// pinctrl-names = "panel_active\0panel_suspend";
+			// pinctrl-0 = <0x3bc>; sde_te1_active
+			// pinctrl-1 = <0x3bd>; sde_te1_suspend
+			
+		pinctrl-0 = <&sde_te_active>;
+		pinctrl-names = "default";
+
+		vddio-supply = <&vreg_l13a_1p8>;
+		vdd3p3-supply = <&vreg_l18a_2p8>;
+
+		port {
+			panel_in: endpoint {
+				remote-endpoint = <&mdss_dsi0_out>;
+			};
+		};
+	};
+};
+
+&mdss_dsi0_out {
+	data-lanes = <0 1 2 3>;
+	remote-endpoint = <&panel_in>;
+	status = "okay";
+};
+
+&mdss_dsi0_phy {
+			// vdda-0p9-supply = <0x1a1>;
+	vdda-supply = <&vreg_l4a_0p88>;
+	status = "okay";
+};
 
 &pm6150_resin {
 	linux,code = <KEY_VOLUMEDOWN>;
@@ -742,6 +776,41 @@
 
 &tlmm {
 	gpio-reserved-ranges = <0 4>, <59 4>;
+
+	// sde_en_active: sde-en-state {
+	// 	pins = "gpio69";
+	// 	function = "gpio";
+	// 	drive-strength = <0x08>;
+	// 	bias-disable = <0x00>;
+	// };
+
+	sde_te_active: sde-te-state {
+		pins = "gpio10";
+		function = "mdp_vsync";
+		drive-strength = <0x02>;
+		bias-pull-down;
+	};
+
+	sde_dsi_active: sde-dsi-state {
+		pins = "gpio11", "gpio64";
+		function = "gpio";
+		drive-strength = <0x08>;
+		bias-disable = <0x00>;
+	};
+
+	sde_esd_active: sde-esd-state {
+		pins = "gpio63";
+		function = "gpio";
+		drive-strength = <0x08>;
+		bias-disable = <0x00>;
+	};
+
+	sde_ub_det_active: sde-ub-det-state {
+		pins = "gpio66";
+		function = "gpio";
+		drive-strength = <0x02>;
+		bias-disable = <0x00>;
+	};
 
 	sdc2_on: sdc2-on-state {
 		clk-pins {
