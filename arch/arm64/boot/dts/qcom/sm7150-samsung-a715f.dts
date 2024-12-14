@@ -60,6 +60,7 @@
 	aliases {
 		bluetooth0 = &bluetooth;
 		hsuart0 = &uart3;
+		wifi0 = &wifi;
 	};
 
 	chosen {
@@ -158,6 +159,15 @@
 		sec_cdsp_mem: memory@a4000000 {
 			reg = <0x0 0xa4000000 0x0 0xc00000>;
 			no-map;
+		};
+
+		rmtfs_mem: memory@fe301000 {
+			compatible = "qcom,rmtfs-mem";
+			reg = <0 0xfe301000 0 0x200000>;
+			no-map;
+
+			qcom,client-id = <1>;
+			qcom,vmid = <15>;
 		};
 	};
 };
@@ -383,6 +393,7 @@
 	status = "okay";
 };
 
+// If enabled device crashes. It might be directly this device or a dependent
 &gpi_dma1 {
 	status = "disabled";
 };
@@ -860,4 +871,16 @@
 
 &venus {
 	firmware-name = "qcom/sm7150/a715f/venus.mbn";
+};
+
+// TODO: wifi is disabled until it doesn't crash the modem remote processor anymore.
+&wifi {
+	vdd-0.8-cx-mx-supply = <&vreg_l9a_0p8>;
+	vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
+	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
+	vdd-3.3-ch0-supply = <&vreg_l10c_3p3>;
+	// vdd-3.3-ch1-supply;
+	vdd-3.3-ch1-supply = <&vreg_l11c_3p3>; // NOTE: downstream does not define any supply for ch1
+	// firmware-name = "qcom/sm7150/a715f/wlanmdsp.mbn";
+	status = "disabled";
 };
