@@ -399,7 +399,7 @@
 
 // If enabled device crashes. It might be directly this device or a dependent
 &gpi_dma1 {
-	status = "disabled";
+	status = "okay";
 };
 
 &gpu {
