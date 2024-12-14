@@ -751,7 +751,7 @@
 			// pinctrl-0 = <0x3bc>; sde_te1_active
 			// pinctrl-1 = <0x3bd>; sde_te1_suspend
 			
-		pinctrl-0 = <&sde_te_active>;
+		pinctrl-0 = <&sde_te_active &sde_dsi_active &sde_esd_active &sde_ub_det_active>;
 		pinctrl-names = "default";
 
 		vddio-supply = <&vreg_l13a_1p8>;
