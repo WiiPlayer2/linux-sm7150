@@ -792,6 +792,10 @@
 	};
 };
 
+&pm6150_rtc {
+	status = "okay";
+};
+
 &qup_spi1_spi {
 	drive-strength = <6>;
 	bias-disable;
