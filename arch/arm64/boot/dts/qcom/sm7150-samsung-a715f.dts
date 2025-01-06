@@ -185,6 +185,24 @@
 		compatible = "qcom,pm6150-rpmh-regulators";
 		qcom,pmic-id = "a";
 
+		// vdd-s1-supply
+		// vdd-s2-supply
+		// vdd-s3-supply
+		// vdd-s4-supply
+		// vdd-s5-supply
+
+		// vdd-l1-supply
+		// vdd-l2-l3-supply
+		// vdd-l4-l7-l8-supply
+		vdd-l5-l16-l17-l18-l19-supply = <&vreg_l11a_1p8>;
+		// vdd-l6-supply
+		// vdd-l9-supply
+		// vdd-l10-l14-l15-supply
+		// vdd-l11-l12-l13-supply
+
+		// S2 - gfx.lvl (ARC)
+		// S3 - mx.lvl (ARC)
+
 		vreg_s4a_1p1: smps4 {
 			regulator-name = "vreg_s4a";
 			regulator-min-microvolt = <824000>;
@@ -256,6 +274,9 @@
 			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
 						   RPMH_REGULATOR_MODE_HPM>;
 		};
+
+		// L7 - lmx.lvl (ARC)
+		// L8 - lcx.lvl (ARC)
 
 		vreg_l9a_0p8: ldo9 {
 			regulator-name = "vreg_l9a";
@@ -372,11 +393,31 @@
 		compatible = "qcom,pm6150l-rpmh-regulators";
 		qcom,pmic-id = "c";
 
+		// vdd-s1-supply
+		// vdd-s2-supply
+		// vdd-s3-supply
+		// vdd-s4-supply
+		// vdd-s5-supply
+		// vdd-s6-supply
+		// vdd-s7-supply
+		// vdd-s8-supply
+
+		// vdd-l1-l8-supply
+		// vdd-l2-l3-supply
+		// vdd-l4-l5-l6-supply
+		// vdd-l7-l11-supply
+		// vdd-l9-l10-supply
+
+		// vdd-bob-supply
+
 		vreg_s1c_1p13: smps1 {
 			regulator-name = "vreg_s1c";
 			regulator-min-microvolt = <1000000>;
 			regulator-max-microvolt = <1200000>;
 		};
+
+		// S2 - cx.lvl (ARC)
+		// S7 - mss.lvl (ARC)
 
 		vreg_s8c_1p35: smps8 {
 			regulator-name = "vreg_s8c";
