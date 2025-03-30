@@ -1083,4 +1083,14 @@ config DRM_PANEL_XINPENG_XPP055C272
 	  Say Y here if you want to enable support for the Xinpeng
 	  XPP055C272 controller for 720x1280 LCD panels with MIPI/RGB/SPI
 	  system interfaces.
+
+config DRM_PANEL_S6E3FA9_AMB667UM06_FHD
+	tristate "S6E3FA9_AMB667UM06_FHD panel driver"
+	depends on OF
+	depends on DRM_MIPI_DSI
+	depends on BACKLIGHT_CLASS_DEVICE
+	help
+	  Say Y here if you want to enable support for the
+	  S6E3FA9_AMB667UM06_FHD controller for 1080x2400 LCD panels with MIPI/RGB/SPI
+	  system interfaces.
 endmenu
