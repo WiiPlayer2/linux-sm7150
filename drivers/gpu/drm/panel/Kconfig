@@ -715,6 +715,16 @@ config DRM_PANEL_RONBO_RB070D30
 	  Say Y here if you want to enable support for Ronbo Electronics
 	  RB070D30 1024x600 DSI panel.
 
+config DRM_PANEL_SAMSUNG_S6E3FA9_AMB667UM06
+	tristate "Samsung AMB667UM06 panel with S6E3FA9 controller"
+	depends on OF
+	depends on DRM_MIPI_DSI
+	depends on BACKLIGHT_CLASS_DEVICE
+	help
+	  Say Y here if you want to enable support for the Samsung AMB667UM06
+	  panel with S6E3FA9 controller (found in Samsung Galaxy A71 (A715F)) for
+	  1080x2400 LCD panels with MIPI/RGB system interfaces.
+
 config DRM_PANEL_SAMSUNG_AMS581VF01
 	tristate "Samsung AMS581VF01 panel"
 	depends on OF
